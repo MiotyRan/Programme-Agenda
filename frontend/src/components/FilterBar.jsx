@@ -21,7 +21,7 @@ export default function FilterBar({ filters, onChange }) {
 
       <div className="filter-group">
         <label className="filter-label">Volana voalohany</label>
-        <select className="filter-select" value={filters.volana_debut} onChange={e => set('volana_debut', e.target.value)}>
+        <select className="filter-select" translate="no" value={filters.volana_debut} onChange={e => set('volana_debut', e.target.value)}>
           <option value="">— Rehetra —</option>
           {VOLANA.map(v => <option key={v}>{v}</option>)}
         </select>
@@ -29,7 +29,7 @@ export default function FilterBar({ filters, onChange }) {
 
       <div className="filter-group">
         <label className="filter-label">Volana farany</label>
-        <select className="filter-select" value={filters.volana_fin} onChange={e => set('volana_fin', e.target.value)}>
+        <select className="filter-select" translate="no" value={filters.volana_fin} onChange={e => set('volana_fin', e.target.value)}>
           <option value="">— Rehetra —</option>
           {VOLANA.map(v => <option key={v}>{v}</option>)}
         </select>

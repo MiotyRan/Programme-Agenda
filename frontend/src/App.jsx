@@ -44,7 +44,7 @@ useEffect(() => {
 
   const handleDelete = async () => {
     if (!selectedId) return;
-    if (!window.confirm('Hofafana io programa io?')) return;
+    if (!window.confirm('Supprimer ce programme ?')) return;
     try {
       await programmeApi.delete(selectedId);
       setSelectedId(null);
@@ -128,8 +128,8 @@ useEffect(() => {
       <main className="table-container">
         {error && (
           <div className="error-banner">
-            ⚠ Tsy azo nampidirana ny angona: {error}
-            <button onClick={fetchData}>Avereno</button>
+            ⚠ Impossible de charger les données: {error}
+            <button onClick={fetchData}>Réessayer</button>
           </div>
         )}
         <ProgrammeTable

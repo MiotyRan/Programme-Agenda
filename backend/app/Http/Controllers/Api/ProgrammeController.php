@@ -77,7 +77,8 @@ class ProgrammeController extends Controller
                 'asa'             => 'required|string|max:500',
                 'mpanatanteraka'  => 'nullable|string|max:200',
                 'toerana'         => 'nullable|string|max:200',
-                'taona'           => 'nullable|string|max:4',
+                // 'taona'           => 'nullable|string|max:4',
+                'taona' => 'nullable|string',
             ]);
 
             $validated['taona'] = $validated['taona'] ?? date('Y');

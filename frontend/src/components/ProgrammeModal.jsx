@@ -62,9 +62,9 @@ export default function ProgrammeModal({ mode, initial, onSave, onClose }) {
 
           <div className="form-row">
             <Field label="Volana *" error={errors.volana}>
-              <select value={form.volana} onChange={e => set('volana', e.target.value)}>
-                <option value="">— Misafidy —</option>
-                {VOLANA.map(v => <option key={v}>{v}</option>)}
+              <select value={form.volana} onChange={e => set('volana', e.target.value)} translate='no'>
+                <option value="v">— Misafidy —</option>
+                {VOLANA.map(v => <option key={v} translate='no' >{v}</option>)}
               </select>
             </Field>
 
