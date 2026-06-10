@@ -15,6 +15,10 @@ const VOLANA_IDX = {
   Janoary:0,Febroary:1,Martsa:2,Aprily:3,Mey:4,Jona:5,
   Jolay:6,Aogositra:7,Septambra:8,Oktobra:9,Novambra:10,Desambra:11,
 };
+const ANDRO_IDX = {
+  'Alahady': 0, 'Alatsinainy': 1, 'Talata': 2,
+  'Alarobia': 3, 'Alakamisy': 4, 'Zoma': 5, 'Sabotsy': 6,
+};
 
 const VOLANA_COLORS = [
   '#EF4444','#F97316','#EAB308','#22C55E','#10B981','#06B6D4',
@@ -34,6 +38,7 @@ export default function ProgrammeTable({ programmes, loading, selectedId, onSele
     let av = a[sortKey] ?? '', bv = b[sortKey] ?? '';
     if (sortKey === 'volana') { av = VOLANA_IDX[av] ?? 99; bv = VOLANA_IDX[bv] ?? 99; }
     else if (sortKey === 'daty') { av = Number(av); bv = Number(bv); }
+    else if (sortKey === 'andro') { av = ANDRO_IDX[av] ?? 99; bv = ANDRO_IDX[bv] ?? 99; }
     if (av < bv) return -sortDir;
     if (av > bv) return sortDir;
     return 0;
