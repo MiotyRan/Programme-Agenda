@@ -39,9 +39,9 @@ export default function StatsBar({ programmes, total }) {
 
   return (
     <div className="stats-bar">
-      <Stat value={total} label="Programmes" />
-      <Stat value={moisActifs} label="Mois actifs" />
-      <Stat value={prochains} label="À venir" accent />
+      <Stat value={total} label="Programa" />
+      <Stat value={moisActifs} label="Volana" />
+      <Stat value={prochains} label="Ho avy" accent />
     </div>
   );
 }
