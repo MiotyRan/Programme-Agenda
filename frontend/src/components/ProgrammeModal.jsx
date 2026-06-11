@@ -14,7 +14,11 @@ const empty = {
 };
 
 export default function ProgrammeModal({ mode, initial, onSave, onClose }) {
-  const [form, setForm] = useState(initial ? { ...initial } : { ...empty });
+  // const [form, setForm] = useState(initial ? { ...initial } : { ...empty });
+  const [form, setForm] = useState(initial ? { 
+  ...initial, 
+  asa: (initial.asa || '').replace(' (kopia)', '').trim()
+  } : { ...empty });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
