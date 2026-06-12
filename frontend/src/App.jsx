@@ -42,6 +42,13 @@ useEffect(() => {
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [filters]);
 
+useEffect(() => {
+  const interval = setInterval(() => {
+    fetchData(); // rafraîchit toutes les minutes
+  }, 60000); // 60 secondes
+  return () => clearInterval(interval);
+}, []);
+
   const handleDelete = async () => {
     if (!selectedId) return;
     if (!window.confirm('Supprimer ce programme ?')) return;
