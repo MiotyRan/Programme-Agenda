@@ -144,6 +144,9 @@ useEffect(() => {
           loading={loading}
           selectedId={selectedId}
           onSelect={setSelectedId}
+          onEdit={() => { if (selectedId) setModal('edit'); }}
+          onDelete={handleDelete}
+          onDuplicate={handleDuplicate}
         />
       </main>
 
