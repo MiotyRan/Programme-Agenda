@@ -5,7 +5,13 @@ import ProgrammeModal from './components/ProgrammeModal';
 import ProgrammeTable from './components/ProgrammeTable';
 import FilterBar from './components/FilterBar';
 import StatsBar from './components/StatsBar';
+import AgendaModal from './components/AgendaModal';
 import './index.css';
+
+const VOLANA = [
+  'Janoary','Febroary','Martsa','Aprily','Mey','Jona',
+  'Jolay','Aogositra','Septambra','Oktobra','Novambra','Desambra',
+];
 
 export default function App() {
   const [programmes, setProgrammes] = useState([]);
@@ -83,6 +89,8 @@ useEffect(() => {
 
   const selectedProgramme = programmes.find(p => p.id === selectedId);
 
+  const [showAgenda, setShowAgenda] = useState(false);
+
   return (
     <div className="app-shell">
       {/* ── Header ─────────────────────────────────────── */}
@@ -95,6 +103,9 @@ useEffect(() => {
           </div>
         </div>
         <div className="header-actions">
+          <button className="btn btn-ghost" onClick={() => setShowAgenda(true)}>
+            📅 Voir Agenda
+          </button>
           <button className="btn btn-ghost" onClick={() => programmeApi.exportCsv(filters)}>
             <span className="btn-icon">↓</span> Exporter CSV
           </button>
@@ -157,6 +168,15 @@ useEffect(() => {
           initial={modal === 'edit' ? selectedProgramme : null}
           onSave={handleSave}
           onClose={() => setModal(null)}
+        />
+      )}
+
+      {showAgenda && (
+        <AgendaModal
+          programmes={programmes}
+          moisInitial={VOLANA[new Date().getMonth()]}
+          anneeInitiale={new Date().getFullYear().toString()}
+          onClose={() => setShowAgenda(false)}
         />
       )}
     </div>
