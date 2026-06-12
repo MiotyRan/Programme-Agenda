@@ -13,6 +13,19 @@ const empty = {
   taona: new Date().getFullYear().toString(),
 };
 
+const VOLANA_IDX = {
+  Janoary:0,Febroary:1,Martsa:2,Aprily:3,Mey:4,Jona:5,
+  Jolay:6,Aogositra:7,Septambra:8,Oktobra:9,Novambra:10,Desambra:11,
+};
+
+function getJourSemaine(volana, daty, taona) {
+  if (!volana || !daty) return '';
+  const moisIdx = VOLANA_IDX[volana];
+  if (moisIdx === undefined) return '';
+  const date = new Date(Number(taona), moisIdx, Number(daty));
+  return ANDRO[date.getDay()]; // getDay() : 0=Dimanche, 1=Lundi...
+}
+
 export default function ProgrammeModal({ mode, initial, onSave, onClose }) {
   // const [form, setForm] = useState(initial ? { ...initial } : { ...empty });
   const [form, setForm] = useState(initial ? { 
@@ -22,10 +35,28 @@ export default function ProgrammeModal({ mode, initial, onSave, onClose }) {
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
+  // const set = (k, v) => {
+  //   setForm(f => ({ ...f, [k]: v }));
+  //   setErrors(e => ({ ...e, [k]: null }));
+  // };
+
   const set = (k, v) => {
-    setForm(f => ({ ...f, [k]: v }));
-    setErrors(e => ({ ...e, [k]: null }));
-  };
+  setForm(f => {
+    const updated = { ...f, [k]: v };
+
+    // Recalculer le jour automatiquement
+    if (k === 'volana' || k === 'daty') {
+      updated.andro = getJourSemaine(
+        k === 'volana' ? v : f.volana,
+        k === 'daty'   ? v : f.daty,
+        f.taona
+      );
+    }
+
+    return updated;
+  });
+  setErrors(e => ({ ...e, [k]: null }));
+};
 
   const validate = () => {
     const e = {};
