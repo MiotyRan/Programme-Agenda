@@ -89,7 +89,7 @@ export const programmeApi = {
     const programmes = json.data;
 
     // Construire le CSV avec point-virgule
-    const headers = ['Année','Mois','Jour','Jour semaine','Heure','Activité','Responsable','Lieu'];
+    const headers = ['Taona','Volana','Daty','Andro','Ora','Asa','Mpanatanteraka','Toerana'];
     const rows = programmes.map(p => [
       p.taona ?? '',
       p.volana ?? '',
