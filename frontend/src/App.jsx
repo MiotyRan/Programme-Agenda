@@ -98,7 +98,7 @@ useEffect(() => {
           <button className="btn btn-ghost" onClick={() => programmeApi.exportCsv(filters)}>
             <span className="btn-icon">↓</span> Exporter CSV
           </button>
-          <button
+          {/* <button
             className="btn btn-secondary"
             onClick={handleDuplicate}
             disabled={!selectedId}
@@ -118,7 +118,7 @@ useEffect(() => {
             disabled={!selectedId}
           >
             Modifier
-          </button>
+          </button> */}
           <button className="btn btn-primary" onClick={() => setModal('insert')}>
             + Insérer
           </button>
