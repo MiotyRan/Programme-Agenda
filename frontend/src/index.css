@@ -496,3 +496,43 @@ html, body, #root {
   .stats-bar { flex-direction: column; }
   .filter-divider { display: none; }
 }
+
+/* ─── Context Menu ────────────────────────────────────────────────────── */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
+
+.context-menu {
+  position: fixed;
+  z-index: 1000;
+  background: var(--bg-card);
+  border: 1px solid var(--border-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  min-width: 160px;
+  animation: slideUp 120ms ease;
+}
+
+.context-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  font-size: 13px;
+  font-family: var(--font);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition);
+}
+.context-item:hover { background: var(--bg-hover); }
+.context-danger { color: var(--danger) !important; }
+.context-danger:hover { background: var(--danger-dim) !important; }
+.context-divider { height: 1px; background: var(--border); margin: 4px 0; }
