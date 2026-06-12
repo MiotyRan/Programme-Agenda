@@ -65,15 +65,53 @@ export const programmeApi = {
     return request(`/programmes/${id}/duplicate`, { method: 'POST' });
   },
 
+  // async exportCsv(filters = {}) {
+  //   const params = new URLSearchParams();
+  //   Object.entries(filters).forEach(([k, v]) => { if (v) params.append(k, v); });
+  //   const qs = params.toString();
+  //   const blob = await request(`/programmes/export/csv${qs ? '?' + qs : ''}`);
+  //   const url = URL.createObjectURL(blob);
+  //   const a = document.createElement('a');
+  //   a.href = url;
+  //   a.download = 'TVF-LaminAsa.csv';
+  //   a.click();
+  //   URL.revokeObjectURL(url);
+  // },
+  
   async exportCsv(filters = {}) {
     const params = new URLSearchParams();
     Object.entries(filters).forEach(([k, v]) => { if (v) params.append(k, v); });
     const qs = params.toString();
-    const blob = await request(`/programmes/export/csv${qs ? '?' + qs : ''}`);
+    
+    // Récupérer les données JSON au lieu du CSV Laravel
+    const res = await fetch(`${BASE_URL}/programmes${qs ? '?' + qs : ''}`);
+    const json = await res.json();
+    const programmes = json.data;
+
+    // Construire le CSV avec point-virgule
+    const headers = ['Année','Mois','Jour','Jour semaine','Heure','Activité','Responsable','Lieu'];
+    const rows = programmes.map(p => [
+      p.taona ?? '',
+      p.volana ?? '',
+      p.daty ?? '',
+      p.andro ?? '',
+      p.ora ? p.ora.slice(0,5) : '',
+      `"${(p.asa ?? '').replace(/"/g, '""')}"`,
+      p.mpanatanteraka ?? '',
+      p.toerana ?? '',
+    ].join(';'));
+
+    const csv = [
+      '\uFEFF',                    // BOM UTF-8 pour Excel
+      headers.join(';'),           // en-têtes séparés par ;
+      ...rows
+    ].join('\r\n');
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'TVF-LaminAsa.csv';
+    a.download = `TVF-LaminAsa-${filters.taona || 'export'}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   },
