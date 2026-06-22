@@ -165,9 +165,9 @@ export default function ProgrammeTable({ programmes, loading, selectedId, onSele
           <button className="context-item" onClick={() => { onEdit(); closeMenu(); }}>
             ✎ Modifier
           </button>
-          <button className="context-item" onClick={() => { onDuplicate(); closeMenu(); }}>
+          {/* <button className="context-item" onClick={() => { onDuplicate(); closeMenu(); }}>
             📋 Même date
-          </button>
+          </button> */}
           <div className="context-divider" />
           <button className="context-item context-danger" onClick={() => { onDelete(); closeMenu(); }}>
             🗑 Supprimer
